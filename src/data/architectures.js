@@ -1,30 +1,47 @@
 export const architectures = [
   {
-    title: "Microservices E-Commerce Architecture",
-    description: "Multi-region deployment with event-driven communication",
-    diagram: "https://via.placeholder.com/800x500/1e293b/6366f1?text=E-Commerce+Microservices+Architecture",
-    components: ["API Gateway", "Service Mesh", "Event Bus", "Database Sharding", "CDN", "Cache Layer"],
-    patterns: ["CQRS", "Event Sourcing", "Circuit Breaker", "Saga Pattern"]
-  },
+  title: "Multi-Agent AI System for Photovoltaic Optimization",
+  description: "Distributed artificial intelligence system using autonomous BDI agents to monitor, predict, and optimize photovoltaic installations in real time, improving energy yield through coordinated decision-making.",
+  diagram: "https://via.placeholder.com/800x500/1e293b/a855f7?text=Multi-Agent+Photovoltaic+Optimization+Architecture",
+  components: [
+    "Monitoring Agent",
+    "Prediction Agent (LSTM)",
+    "Optimization Agent",
+    "Maintenance Agent",
+    "Weather Agent",
+    "Coordinator Agent",
+    "MQTT Broker",
+    "Time-Series Database",
+    "Distributed Cache"
+  ],
+  patterns: [
+    "Multi-Agent Architecture (BDI)",
+    "Event-Driven Architecture",
+    "Publish / Subscribe Messaging",
+    "Distributed Decision-Making",
+    "Time-Series Analytics"
+  ]
+}
+,
   {
-    title: "Real-Time Data Pipeline",
-    description: "Lambda architecture for batch and stream processing",
-    diagram: "https://via.placeholder.com/800x500/1e293b/a855f7?text=Real-Time+Data+Pipeline+Architecture",
-    components: ["Stream Ingestion", "Message Queue", "Stream Processing", "Batch Processing", "Data Lake", "Analytics"],
-    patterns: ["Lambda Architecture", "Stream Processing", "Data Partitioning", "Time-Series Optimization"]
-  },
-  {
-    title: "Zero Trust Security Architecture",
-    description: "Defense-in-depth with zero trust principles",
-    diagram: "https://via.placeholder.com/800x500/1e293b/ec4899?text=Zero+Trust+Security+Architecture",
-    components: ["Identity Provider", "API Gateway", "Service Mesh", "Secrets Manager", "WAF", "SIEM"],
-    patterns: ["Zero Trust", "Identity-Based Access", "Encryption at Rest/Transit", "Least Privilege"]
-  },
-  {
-    title: "Hybrid Cloud Infrastructure",
-    description: "Multi-cloud deployment with failover capabilities",
-    diagram: "https://via.placeholder.com/800x500/1e293b/10b981?text=Hybrid+Cloud+Infrastructure",
-    components: ["Cloud Gateway", "VPN", "Load Balancer", "Container Orchestration", "Monitoring", "Disaster Recovery"],
-    patterns: ["Multi-Cloud", "Active-Active", "Data Replication", "Service Discovery"]
-  }
+  title: "IoT Energy Management System",
+  description: "End-to-end IoT energy management platform combining embedded energy sensors and a cloud backend to collect, process, and expose real-time consumption data through RESTful APIs for mobile applications.",
+  diagram: "https://via.placeholder.com/800x500/1e293b/a855f7?text=IoT+Energy+Management+Architecture",
+  components: [
+    "Arduino Energy Sensors",
+    "Data Acquisition Layer",
+    "REST API Gateway",
+    "Backend Services",
+    "Relational & NoSQL Databases",
+    "Mobile Application"
+  ],
+  patterns: [
+    "Two-Tier Architecture",
+    "RESTful API Design",
+    "Asynchronous Data Ingestion",
+    "Time-Series Data Storage"
+  ]
+}
+,
+
 ];

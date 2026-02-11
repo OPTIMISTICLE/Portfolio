@@ -4,6 +4,7 @@ export const posts = [
     excerpt: "Deep dive into when to use microservices architecture and when monolithic approach makes more sense for your business.",
     date: "Feb 5, 2025",
     readTime: "8 min read",
+    url: "https://www.linkedin.com/in/bi-balefai-mondesir-boli-a62a41222/",
     tags: ["Architecture", "Microservices", "Design Patterns"]
   },
   {

@@ -55,7 +55,7 @@ const Home = () => {
                 </span>
               </h1>
               <p className={`text-xl mb-8 animate-fade-in delay-100 ${darkMode ? 'text-slate-300' : 'text-slate-600'}`}>
-                Designing scalable, resilient, and innovative cloud architectures for enterprise solutions. 12+ years of experience transforming complex business challenges into elegant technical solutions.
+                Young, capable of Designing scalable, resilient, and innovative cloud architectures for enterprise solutions. Hands on project experience in cloud architecture, system design, and DevOps.
               </p>
               <div className="flex flex-wrap gap-4 animate-fade-in delay-200">
                 <Link
@@ -86,20 +86,15 @@ const Home = () => {
                   </div>
                   <pre className="text-xs md:text-sm">
 {`const architect = {
-  name: "John Smith",
+  name: "BOLI BI BALEFAI MONDESIR",
   role: "Solution Architect",
-  experience: "12+ years",
+  experience: "lifetime",
   specialization: [
     "Cloud Architecture",
     "Microservices",
     "System Design",
     "DevOps"
   ],
-  certifications: [
-    "AWS Solutions Architect",
-    "Azure Solutions Architect",
-    "TOGAF 9 Certified"
-  ]
 };`}
                   </pre>
                 </div>

@@ -135,8 +135,8 @@ const Contact = () => {
                     <div className={`font-semibold ${darkMode ? 'text-white' : 'text-slate-900'}`}>
                       Email
                     </div>
-                    <a href="mailto:architect@example.com" className="text-indigo-500 hover:text-indigo-400">
-                      architect@example.com
+                    <a href="mailto:bibalefai@gmail.com" className="text-indigo-500 hover:text-indigo-400">
+                      bibalefai@gmail.com
                     </a>
                   </div>
                 </div>
@@ -146,8 +146,8 @@ const Contact = () => {
                     <div className={`font-semibold ${darkMode ? 'text-white' : 'text-slate-900'}`}>
                       LinkedIn
                     </div>
-                    <a href="https://linkedin.com" className="text-indigo-500 hover:text-indigo-400">
-                      linkedin.com/in/solution-architect
+                    <a href="https://www.linkedin.com/in/bi-balefai-mondesir-boli-a62a41222/" className="text-indigo-500 hover:text-indigo-400">
+                      BI BALEFAI MONDESIR BOLI
                     </a>
                   </div>
                 </div>
@@ -157,8 +157,8 @@ const Contact = () => {
                     <div className={`font-semibold ${darkMode ? 'text-white' : 'text-slate-900'}`}>
                       GitHub
                     </div>
-                    <a href="https://github.com" className="text-indigo-500 hover:text-indigo-400">
-                      github.com/solution-architect
+                    <a href="https://github.com/OPTIMISTICLE" className="text-indigo-500 hover:text-indigo-400">
+                      OPTIMISTICLE
                     </a>
                   </div>
                 </div>
