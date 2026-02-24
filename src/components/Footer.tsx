@@ -19,7 +19,7 @@ const Footer = () => {
           </a>
         </div>
         <p className={`font-mono text-sm ${darkMode ? 'text-slate-400' : 'text-slate-600'}`}>
-          © 2025 Solution Architect Portfolio. Built with React.
+          © 2026 Software Engineer Portfolio. All rights reserved.
         </p>
       </div>
     </footer>
