@@ -22,7 +22,7 @@ const Navbar = () => {
       <div className="max-w-7xl mx-auto px-6 py-4">
         <div className="flex justify-between items-center">
           <Link to="/" className={`text-2xl font-bold font-mono ${darkMode ? 'text-white' : 'text-slate-900'}`}>
-            {'<SA/>'}
+            {'<SE/>'}
           </Link>
 
           {/* Desktop Menu */}

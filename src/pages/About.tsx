@@ -12,7 +12,7 @@ const About = () => {
           About Me
         </h1>
         <p className={`text-xl mb-12 animate-fade-in delay-100 max-w-3xl ${darkMode ? 'text-slate-300' : 'text-slate-600'}`}>
-          Passionate solution architect with 12+ years of experience designing and implementing enterprise-scale systems. Specialized in cloud architecture, microservices, and digital transformation initiatives.
+          Passionate Backend Engineer with 2+ years of experience designing and implementing systems. Specialized in cloud architecture, microservices, and digital transformation initiatives.
         </p>
 
         {/* Experience */}
@@ -69,9 +69,11 @@ const About = () => {
               >
                 <Award size={32} className="text-indigo-500 flex-shrink-0" />
                 <div>
+                  <a href={cert.link} target="_blank" rel="noopener noreferrer" className="hover:text-indigo-500 transition-colors" style={{ textDecoration: 'none'}}>
                   <h3 className={`font-bold ${darkMode ? 'text-white' : 'text-slate-900'}`}>
                     {cert.name}
                   </h3>
+                  </a>
                   <p className={`text-sm ${darkMode ? 'text-slate-400' : 'text-slate-500'}`}>
                     Certified {cert.year}
                   </p>

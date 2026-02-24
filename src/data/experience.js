@@ -1,40 +1,43 @@
 export const experience = [
   {
-    company: "Tech Innovators Corp",
-    role: "Lead Solution Architect",
-    period: "2020 - Present",
+    company: "ESATIC",
+    role: "Backend Engineer",
+    period: "October 2025 - February 2026",
     achievements: [
-      "Led architecture for $50M+ cloud transformation project",
-      "Reduced infrastructure costs by 40% through optimization",
-      "Mentored team of 8 architects and 30+ developers"
+      "Analysis of business requirements and writing of backend technical specifications",
+      "Design of modular and agent-oriented backend architectures",
+      "Development of robust and scalable backend services in Python",
+      "Integration of artificial intelligence models in application pipelines",
+      "Management and processing of real-time data and time series",
+      "Implementation of APIs and inter-service communication mechanisms",
+      "Performance optimization and reliability of backend systems",
+      "Implementation of automated testing and code quality assurance",
+      "Containerization and deployment of services with Docker and CI/CD",
+      "Participation in Agile (Scrum) rituals and technical planning",
+      "Technologies : Python, LangChain, SPADE, InfluxDB, Redis, MQTT (Mosquitto), LSTM, Docker, GitHub"
     ]
   },
   {
-    company: "Enterprise Solutions Inc",
-    role: "Senior Solution Architect",
-    period: "2017 - 2020",
+    company: "Orange Digital Center Abidjan-Plateau",
+    role: "Backend Engineer",
+    period: "April 2024 - November 2024",
     achievements: [
-      "Designed microservices architecture serving 5M+ users",
-      "Implemented DevOps practices reducing deployment time by 80%",
-      "Led migration from monolith to cloud-native architecture"
-    ]
-  },
-  {
-    company: "Digital Services Ltd",
-    role: "Solution Architect",
-    period: "2013 - 2017",
-    achievements: [
-      "Architected e-commerce platform processing $100M+ annually",
-      "Implemented API gateway serving 10K+ requests/second",
-      "Achieved 99.99% uptime SLA for critical systems"
+      "Analysis of requirements and design of backend architectures for IoT systems",
+      "Implementation of communication between embedded devices and cloud infrastructure",
+      "Development and maintenance of secure REST APIs",
+      "Management of IoT data storage and structuring",
+      "Processing and analysis of real-time data streams",
+      "Integration of backend services with mobile and web applications",
+      "Optimization of performance and resource consumption",
+      "Implementation of security mechanisms (authentication, authorization, data protection)",
+      "Deployment and monitoring of services on cloud infrastructure",
+      "Collaboration with hardware, mobile and frontend teams",
+      "Technologies : Node.js, Express.js, Arduino, Flutter, MySQL, MongoDB, API REST, Cloud Computing"
     ]
   }
 ];
 
 export const certifications = [
-  { name: "AWS Certified Solutions Architect - Professional", year: "2023" },
-  { name: "Microsoft Azure Solutions Architect Expert", year: "2022" },
-  { name: "Google Cloud Professional Cloud Architect", year: "2022" },
-  { name: "TOGAF 9 Certified", year: "2021" },
-  { name: "Kubernetes Certified Administrator (CKA)", year: "2020" }
+  { name: "Pyhton Pro BootCamp", year: "2026", link: "https://www.udemy.com/certificate/UC-b614166c-9511-4575-85a3-9d46b268e676/" },
+  { name: "AWS Cloud Quest Cloud Practitioner", year: "2025", link: "https://www.credly.com/badges/96340afe-5826-4e0a-9b5b-2d3050b34236" },
 ];

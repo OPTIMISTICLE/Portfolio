@@ -49,13 +49,13 @@ const Home = () => {
           <div className="grid md:grid-cols-2 gap-12 items-center">
             <div>
               <h1 className={`text-6xl md:text-7xl font-bold mb-6 animate-fade-in ${darkMode ? 'text-white' : 'text-slate-900'}`}>
-                Solution<br />
+                Software<br />
                 <span className="bg-gradient-to-r from-indigo-500 to-purple-500 bg-clip-text text-transparent">
-                  Architect
+                  Engineer
                 </span>
               </h1>
               <p className={`text-xl mb-8 animate-fade-in delay-100 ${darkMode ? 'text-slate-300' : 'text-slate-600'}`}>
-                Young, capable of Designing scalable, resilient, and innovative cloud architectures for enterprise solutions. Hands on project experience in cloud architecture, system design, and DevOps.
+                Passionate Backend Engineer with 2+ years of experience designing and implementing systems. Specialized in cloud architecture, microservices, and digital transformation initiatives.
               </p>
               <div className="flex flex-wrap gap-4 animate-fade-in delay-200">
                 <Link
@@ -87,7 +87,7 @@ const Home = () => {
                   <pre className="text-xs md:text-sm">
 {`const architect = {
   name: "BOLI BI BALEFAI MONDESIR",
-  role: "Solution Architect",
+  role: "Software Engineer",
   experience: "lifetime",
   specialization: [
     "Cloud Architecture",

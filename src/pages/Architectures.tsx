@@ -22,7 +22,8 @@ const Architectures = () => {
                 darkMode ? 'bg-slate-900' : 'bg-white'
               } shadow-lg animate-fade-in delay-${Math.min((idx + 1) * 100, 400)}`}
             >
-              <img src={arch.diagram} alt={arch.title} className="w-full h-auto" />
+
+
               <div className="p-8">
                 <h2 className={`text-3xl font-bold mb-3 ${darkMode ? 'text-white' : 'text-slate-900'}`}>
                   {arch.title}
@@ -68,6 +69,10 @@ const Architectures = () => {
                   </div>
                 </div>
               </div>
+              {arch.diagram.map((img, i) => (
+                  <img src={img} className="w-full h-auto" />
+              ))
+              }
             </div>
           ))}
         </div>

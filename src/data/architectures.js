@@ -2,7 +2,7 @@ export const architectures = [
   {
   title: "Multi-Agent AI System for Photovoltaic Optimization",
   description: "Distributed artificial intelligence system using autonomous BDI agents to monitor, predict, and optimize photovoltaic installations in real time, improving energy yield through coordinated decision-making.",
-  diagram: "https://via.placeholder.com/800x500/1e293b/a855f7?text=Multi-Agent+Photovoltaic+Optimization+Architecture",
+  diagram: ["/images/MutliAgentComponentDiagram1.png", "/images/MutliAgentSequence.png"],
   components: [
     "Monitoring Agent",
     "Prediction Agent (LSTM)",
@@ -26,7 +26,7 @@ export const architectures = [
   {
   title: "IoT Energy Management System",
   description: "End-to-end IoT energy management platform combining embedded energy sensors and a cloud backend to collect, process, and expose real-time consumption data through RESTful APIs for mobile applications.",
-  diagram: "https://via.placeholder.com/800x500/1e293b/a855f7?text=IoT+Energy+Management+Architecture",
+  diagram: ["/images/EnergyManagementUseCase.png", "/images/EnergyManagementClass.png"],
   components: [
     "Arduino Energy Sensors",
     "Data Acquisition Layer",
