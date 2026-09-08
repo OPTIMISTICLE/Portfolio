@@ -1,0 +1,78 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="960" height="1140" viewBox="0 0 960 1140" role="img" aria-labelledby="title desc">
+  <title id="title">Multi-Agent AI System for Photovoltaic Optimization</title>
+  <desc id="desc">Conceptual architecture showing photovoltaic sensors and weather data flowing through MQTT to six collaborating agents, shared data services, and physical actuators.</desc>
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#6c1f2b"/>
+    </marker>
+  </defs>
+  <style>
+    text { font-family: Arial, sans-serif; }
+    .label { font-size: 23px; font-weight: 700; fill: #48131c; }
+    .detail { font-size: 20px; fill: #6b625b; }
+    .small { font-size: 17px; fill: #6b625b; }
+    .eyebrow { font-size: 16px; letter-spacing: 2px; font-weight: 700; fill: #6c1f2b; }
+    .box { fill: #fff; stroke: #cfc6b7; stroke-width: 2; }
+    .accent { fill: #f1eddf; stroke: #73744b; stroke-width: 2; }
+    .arrow { fill: none; stroke: #6c1f2b; stroke-width: 3; marker-end: url(#arrow); }
+    .feedback { fill: none; stroke: #6c1f2b; stroke-width: 3; stroke-dasharray: 9 8; marker-end: url(#arrow); }
+  </style>
+  <rect width="960" height="1140" fill="#fbf8f0"/>
+  <text x="40" y="45" class="eyebrow">ARCHITECTURE / CONCEPTUAL OVERVIEW</text>
+  <text x="40" y="89" class="label" font-size="32">Photovoltaic Optimization</text>
+  <text x="40" y="125" class="detail">Observe → predict → decide → act → learn</text>
+
+  <rect x="40" y="165" width="410" height="135" rx="16" class="box"/>
+  <text x="64" y="205" class="label">PV installation</text>
+  <text x="64" y="242" class="detail">Energy and equipment sensors</text>
+  <text x="64" y="273" class="detail">Orientation and storage actuators</text>
+  <rect x="510" y="165" width="410" height="135" rx="16" class="box"/>
+  <text x="534" y="205" class="label">External context</text>
+  <text x="534" y="242" class="detail">Weather conditions and forecasts</text>
+  <text x="534" y="273" class="detail">Historical production data</text>
+
+  <path d="M245 300 V330 H390 V360" class="arrow"/>
+  <path d="M715 300 V330 H570 V360" class="arrow"/>
+  <rect x="260" y="360" width="440" height="115" rx="16" class="accent"/>
+  <text x="284" y="401" class="label">MQTT event backbone</text>
+  <text x="284" y="438" class="detail">Telemetry · forecasts · decisions · actions</text>
+
+  <path d="M480 475 V535" class="arrow"/>
+  <rect x="40" y="535" width="880" height="330" rx="24" fill="#f1eddf" stroke="#9a9a72" stroke-width="2"/>
+  <text x="64" y="577" class="label">Distributed BDI agent system</text>
+
+  <rect x="64" y="605" width="260" height="100" rx="14" class="box"/>
+  <text x="84" y="643" class="label">Monitoring</text>
+  <text x="84" y="675" class="small">Collects live telemetry</text>
+  <rect x="350" y="605" width="260" height="100" rx="14" class="box"/>
+  <text x="370" y="643" class="label">Prediction</text>
+  <text x="370" y="675" class="small">LSTM production forecast</text>
+  <rect x="636" y="605" width="260" height="100" rx="14" class="box"/>
+  <text x="656" y="643" class="label">Weather</text>
+  <text x="656" y="675" class="small">Enriches operating context</text>
+
+  <rect x="64" y="730" width="260" height="100" rx="14" class="box"/>
+  <text x="84" y="768" class="label">Optimization</text>
+  <text x="84" y="800" class="small">Selects control actions</text>
+  <rect x="350" y="730" width="260" height="100" rx="14" class="accent"/>
+  <text x="370" y="768" class="label">Coordinator</text>
+  <text x="370" y="800" class="small">Arbitrates agent decisions</text>
+  <rect x="636" y="730" width="260" height="100" rx="14" class="box"/>
+  <text x="656" y="768" class="label">Maintenance</text>
+  <text x="656" y="800" class="small">Detects anomalies early</text>
+
+  <path d="M245 865 V925" class="arrow"/>
+  <path d="M715 865 V925" class="arrow"/>
+  <rect x="40" y="925" width="410" height="130" rx="16" class="box"/>
+  <text x="64" y="966" class="label">Shared data services</text>
+  <text x="64" y="1003" class="detail">InfluxDB time-series history</text>
+  <text x="64" y="1034" class="detail">Redis distributed cache</text>
+  <rect x="510" y="925" width="410" height="130" rx="16" class="accent"/>
+  <text x="534" y="966" class="label">Optimized operation</text>
+  <text x="534" y="1003" class="detail">Orientation and storage control</text>
+  <text x="534" y="1034" class="detail">Predictive maintenance signals</text>
+  <path d="M920 990 H940 V330 H450 V300" class="feedback"/>
+  <text x="925" y="690" class="small" transform="rotate(-90 925 690)">Control feedback to actuators</text>
+
+  <text x="40" y="1110" class="detail">Synthesized from the project description and existing system diagrams.</text>
+</svg>

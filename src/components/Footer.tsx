@@ -1,29 +1,17 @@
 import { Github, Linkedin, Mail } from 'lucide-react';
-import { useTheme } from '../context/ThemeContext';
+import { useLocale } from '../i18n';
 
-const Footer = () => {
-  const { darkMode } = useTheme();
-
+export default function Footer() {
+  const { d } = useLocale();
   return (
-    <footer className={`mt-20 py-12 ${darkMode ? 'bg-slate-900 border-t border-slate-800' : 'bg-white border-t border-slate-200'}`}>
-      <div className="max-w-7xl mx-auto px-6 text-center">
-        <div className="flex justify-center gap-6 mb-6">
-          <a href="https://github.com/OPTIMISTICLE" className={`p-3 rounded-lg transition-colors ${darkMode ? 'bg-slate-800 hover:bg-slate-700 text-white' : 'bg-slate-100 hover:bg-slate-200 text-slate-900'}`}>
-            <Github size={24} />
-          </a>
-          <a href="https://www.linkedin.com/in/bi-balefai-mondesir-boli-a62a41222/" className={`p-3 rounded-lg transition-colors ${darkMode ? 'bg-slate-800 hover:bg-slate-700 text-white' : 'bg-slate-100 hover:bg-slate-200 text-slate-900'}`}>
-            <Linkedin size={24} />
-          </a>
-          <a href="mailto:bibalefai@gmaiL.com" className={`p-3 rounded-lg transition-colors ${darkMode ? 'bg-slate-800 hover:bg-slate-700 text-white' : 'bg-slate-100 hover:bg-slate-200 text-slate-900'}`}>
-            <Mail size={24} />
-          </a>
-        </div>
-        <p className={`font-mono text-sm ${darkMode ? 'text-slate-400' : 'text-slate-600'}`}>
-          © 2026 Software Engineer Portfolio. All rights reserved.
-        </p>
+    <footer className="site-footer">
+      <p>{d.footer}</p>
+      <div>
+        <a href="mailto:bibalefai@gmail.com" aria-label="Email"><Mail /></a>
+        <a href="https://github.com/OPTIMISTICLE" target="_blank" rel="noreferrer" aria-label="GitHub"><Github /></a>
+        <a href="https://www.linkedin.com/in/bi-balefai-mondesir-boli-a62a41222/" target="_blank" rel="noreferrer" aria-label="LinkedIn"><Linkedin /></a>
       </div>
+      <span>© 2026 Boli Bi Balefai Mondesir</span>
     </footer>
   );
-};
-
-export default Footer;
+}

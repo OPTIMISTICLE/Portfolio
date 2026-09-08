@@ -1,0 +1,71 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="960" height="1110" viewBox="0 0 960 1110" role="img" aria-labelledby="title desc">
+  <title id="title">IoT Energy Management System</title>
+  <desc id="desc">Conceptual architecture showing energy sites and Arduino sensors feeding a cloud ingestion and service layer, relational and document databases, REST APIs, and mobile users.</desc>
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#6c1f2b"/>
+    </marker>
+  </defs>
+  <style>
+    text { font-family: Arial, sans-serif; }
+    .label { font-size: 23px; font-weight: 700; fill: #48131c; }
+    .detail { font-size: 20px; fill: #6b625b; }
+    .small { font-size: 17px; fill: #6b625b; }
+    .eyebrow { font-size: 16px; letter-spacing: 2px; font-weight: 700; fill: #6c1f2b; }
+    .box { fill: #fff; stroke: #cfc6b7; stroke-width: 2; }
+    .accent { fill: #f1eddf; stroke: #73744b; stroke-width: 2; }
+    .arrow { fill: none; stroke: #6c1f2b; stroke-width: 3; marker-end: url(#arrow); }
+  </style>
+  <rect width="960" height="1110" fill="#fbf8f0"/>
+  <text x="40" y="45" class="eyebrow">ARCHITECTURE / CONCEPTUAL OVERVIEW</text>
+  <text x="40" y="89" class="label" font-size="32">IoT Energy Management</text>
+  <text x="40" y="125" class="detail">Measure → ingest → process → store → expose</text>
+
+  <rect x="40" y="165" width="880" height="155" rx="20" class="box"/>
+  <text x="64" y="206" class="label">Energy sites / edge layer</text>
+  <rect x="64" y="230" width="250" height="65" rx="12" class="accent"/>
+  <text x="84" y="270" class="detail">Arduino sensors</text>
+  <rect x="355" y="230" width="250" height="65" rx="12" class="box"/>
+  <text x="375" y="270" class="detail">Energy equipment</text>
+  <rect x="646" y="230" width="250" height="65" rx="12" class="box"/>
+  <text x="666" y="270" class="detail">Site gateway</text>
+
+  <path d="M480 320 V370" class="arrow"/>
+  <rect x="160" y="380" width="640" height="120" rx="16" class="accent"/>
+  <text x="184" y="421" class="label">Asynchronous data acquisition</text>
+  <text x="184" y="458" class="detail">Validates and forwards real-time consumption telemetry</text>
+
+  <path d="M480 500 V550" class="arrow"/>
+  <rect x="40" y="560" width="880" height="250" rx="24" fill="#f1eddf" stroke="#9a9a72" stroke-width="2"/>
+  <text x="64" y="602" class="label">Cloud backend / Node.js and Express</text>
+  <rect x="64" y="630" width="250" height="135" rx="14" class="box"/>
+  <text x="84" y="668" class="label">Ingestion</text>
+  <text x="84" y="701" class="small">Receives device telemetry</text>
+  <text x="84" y="730" class="small">Controls data quality</text>
+  <rect x="355" y="630" width="250" height="135" rx="14" class="box"/>
+  <text x="375" y="668" class="label">Services</text>
+  <text x="375" y="701" class="small">Processes consumption</text>
+  <text x="375" y="730" class="small">Coordinates site operations</text>
+  <rect x="646" y="630" width="250" height="135" rx="14" class="box"/>
+  <text x="666" y="668" class="label">REST API</text>
+  <text x="666" y="701" class="small">Secure client access</text>
+  <text x="666" y="730" class="small">Low-latency responses</text>
+
+  <path d="M230 810 V860" class="arrow"/>
+  <path d="M480 810 V860" class="arrow"/>
+  <path d="M730 810 V860" class="arrow"/>
+  <rect x="40" y="870" width="275" height="130" rx="16" class="box"/>
+  <text x="64" y="911" class="label">MySQL</text>
+  <text x="64" y="948" class="detail">Users, sites, devices</text>
+  <text x="64" y="979" class="detail">and operational records</text>
+  <rect x="342" y="870" width="275" height="130" rx="16" class="box"/>
+  <text x="366" y="911" class="label">MongoDB</text>
+  <text x="366" y="948" class="detail">Flexible IoT and</text>
+  <text x="366" y="979" class="detail">consumption data</text>
+  <rect x="644" y="870" width="276" height="130" rx="16" class="accent"/>
+  <text x="668" y="911" class="label">Flutter mobile app</text>
+  <text x="668" y="948" class="detail">Monitoring, reports,</text>
+  <text x="668" y="979" class="detail">and site operations</text>
+
+  <text x="40" y="1075" class="detail">Synthesized from the project description and existing system diagrams.</text>
+</svg>
