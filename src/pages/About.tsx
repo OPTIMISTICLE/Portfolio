@@ -1,90 +1,18 @@
-import { ChevronRight, Award } from 'lucide-react';
-import { useTheme } from '../context/ThemeContext';
-import { experience, certifications } from '../data/experience';
+import { ArrowUpRight, Award, Boxes, Compass, ShieldCheck } from 'lucide-react';
+import { certifications, experience } from '../data/portfolioExperience';
+import { useLocale } from '../i18n';
 
-const About = () => {
-  const { darkMode } = useTheme();
-
-  return (
-    <div className={`min-h-screen py-20 ${darkMode ? 'bg-slate-950' : 'bg-slate-50'}`}>
-      <div className="max-w-7xl mx-auto px-6">
-        <h1 className={`text-5xl font-bold mb-6 animate-fade-in ${darkMode ? 'text-white' : 'text-slate-900'}`}>
-          About Me
-        </h1>
-        <p className={`text-xl mb-12 animate-fade-in delay-100 max-w-3xl ${darkMode ? 'text-slate-300' : 'text-slate-600'}`}>
-          Passionate Backend Engineer with 2+ years of experience designing and implementing systems. Specialized in cloud architecture, microservices, and digital transformation initiatives.
-        </p>
-
-        {/* Experience */}
-        <section className="mb-16">
-          <h2 className={`text-3xl font-bold mb-8 ${darkMode ? 'text-white' : 'text-slate-900'}`}>
-            Experience
-          </h2>
-          <div className="space-y-6">
-            {experience.map((exp, idx) => (
-              <div
-                key={idx}
-                className={`p-8 rounded-xl ${
-                  darkMode ? 'bg-slate-900' : 'bg-white'
-                } shadow-lg animate-fade-in delay-${(idx + 1) * 100}`}
-              >
-                <div className="flex flex-wrap justify-between items-start mb-4">
-                  <div>
-                    <h3 className={`text-2xl font-bold ${darkMode ? 'text-white' : 'text-slate-900'}`}>
-                      {exp.role}
-                    </h3>
-                    <p className={`text-lg ${darkMode ? 'text-indigo-400' : 'text-indigo-600'}`}>
-                      {exp.company}
-                    </p>
-                  </div>
-                  <span className={`px-4 py-2 rounded-lg ${darkMode ? 'bg-slate-800 text-slate-300' : 'bg-slate-100 text-slate-700'}`}>
-                    {exp.period}
-                  </span>
-                </div>
-                <ul className={`space-y-2 ${darkMode ? 'text-slate-300' : 'text-slate-600'}`}>
-                  {exp.achievements.map((achievement, i) => (
-                    <li key={i} className="flex items-start gap-2">
-                      <ChevronRight size={20} className="text-indigo-500 mt-1 flex-shrink-0" />
-                      <span>{achievement}</span>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            ))}
-          </div>
-        </section>
-
-        {/* Certifications */}
-        <section>
-          <h2 className={`text-3xl font-bold mb-8 ${darkMode ? 'text-white' : 'text-slate-900'}`}>
-            Certifications
-          </h2>
-          <div className="grid md:grid-cols-2 gap-6">
-            {certifications.map((cert, idx) => (
-              <div
-                key={idx}
-                className={`p-6 rounded-xl ${
-                  darkMode ? 'bg-slate-900' : 'bg-white'
-                } shadow-lg animate-fade-in delay-${Math.min((idx + 1) * 100, 500)} flex items-center gap-4`}
-              >
-                <Award size={32} className="text-indigo-500 flex-shrink-0" />
-                <div>
-                  <a href={cert.link} target="_blank" rel="noopener noreferrer" className="hover:text-indigo-500 transition-colors" style={{ textDecoration: 'none'}}>
-                  <h3 className={`font-bold ${darkMode ? 'text-white' : 'text-slate-900'}`}>
-                    {cert.name}
-                  </h3>
-                  </a>
-                  <p className={`text-sm ${darkMode ? 'text-slate-400' : 'text-slate-500'}`}>
-                    Certified {cert.year}
-                  </p>
-                </div>
-              </div>
-            ))}
-          </div>
-        </section>
-      </div>
-    </div>
-  );
-};
-
-export default About;
+export default function About() {
+  const { text, d } = useLocale();
+  const principles = [
+    { icon: Compass, title: d.principles[0], copy: text({ en: 'Architecture begins with actors, decisions, and business invariants.', fr: 'L’architecture commence par les acteurs, décisions et invariants métier.' }) },
+    { icon: Boxes, title: d.principles[1], copy: text({ en: 'Each boundary carries an explicit responsibility and trade-off.', fr: 'Chaque frontière porte une responsabilité et un compromis explicites.' }) },
+    { icon: ShieldCheck, title: d.principles[2], copy: text({ en: 'Security, observability, and delivery are designed from the start.', fr: 'Sécurité, observabilité et livraison sont conçues dès le départ.' }) },
+  ];
+  return <section className="page-section page-intro about-page">
+    <p className="eyebrow">03 / PROFILE</p><h1>{d.aboutTitle}</h1><p className="page-lead">{d.aboutIntro}</p>
+    <section><header className="section-heading"><div><p className="eyebrow">01 / METHOD</p><h2>{d.approach}</h2></div></header><div className="principle-grid">{principles.map(({ icon: Icon, title, copy }, i) => <article key={title}><Icon /><span>0{i + 1}</span><h3>{title}</h3><p>{copy}</p></article>)}</div></section>
+    <section><header className="section-heading"><div><p className="eyebrow">02 / TIMELINE</p><h2>{d.experience}</h2></div></header><div className="timeline">{experience.map((entry) => <article key={entry.company}><span>{text(entry.period)}</span><div><h3>{text(entry.role)}</h3><strong>{entry.company}</strong><p>{text(entry.summary)}</p><div className="pattern-list">{entry.tech.map((tech) => <span className="tech-tag" key={tech}>{tech}</span>)}</div></div></article>)}</div></section>
+    <section><header className="section-heading"><div><p className="eyebrow">03 / CREDENTIALS</p><h2>{d.certifications}</h2></div></header><div className="cert-grid">{certifications.map((cert) => <a href={cert.url} target="_blank" rel="noreferrer" key={cert.name}><Award /><span><strong>{cert.name}</strong><small>{cert.year}</small></span><ArrowUpRight /></a>)}</div></section>
+  </section>;
+}
