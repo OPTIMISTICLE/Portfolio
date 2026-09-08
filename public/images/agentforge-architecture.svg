@@ -1,0 +1,43 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="960" height="1370" viewBox="0 0 960 1370" role="img" aria-labelledby="title desc">
+  <title id="title">AgentForge</title>
+  <desc id="desc">From an initial agent idea to a blueprint reviewed by a human.</desc>
+  <defs><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#6c1f2b"/></marker></defs>
+  <style>text { font-family: Arial, sans-serif; } .label { font-size: 23px; font-weight: 700; fill: #48131c; } .detail { font-size: 20px; fill: #6b625b; } .eyebrow { font-size: 16px; letter-spacing: 2px; font-weight: 700; fill: #6c1f2b; }</style>
+  <rect width="960" height="1370" fill="#fbf8f0"/>
+  <text x="40" y="45" class="eyebrow">ARCHITECTURE / CONCEPTUAL OVERVIEW</text>
+  <text x="40" y="89" fill="#48131c" font-family="Arial, sans-serif" font-size="36" font-weight="700">AgentForge</text>
+  <text x="40" y="125" class="detail">From an initial agent idea to a blueprint reviewed by a human.</text>
+  <rect x="160" y="160" width="640" height="120" rx="16" fill="#f1eddf" stroke="#73744b" stroke-width="2"/>
+  <text x="184" y="197" class="label">Next.js / React interface</text>
+  <text x="184" y="229" class="detail">Agent idea, clarification answers, blueprint review</text>
+  <path d="M480 280 V330" fill="none" stroke="#6c1f2b" stroke-width="3" marker-end="url(#arrow)"/>
+  <rect x="80" y="340" width="800" height="130" rx="16" fill="#f1eddf" stroke="#73744b" stroke-width="2"/>
+  <text x="104" y="377" class="label">Django / Pydantic</text>
+  <text x="104" y="409" class="detail">Structured generation, quality scoring, decision traceability</text>
+  <text x="104" y="436" class="detail">Capabilities, data, tools, permissions, risks, tests, backlog</text>
+  <path d="M240 470 V520" fill="none" stroke="#6c1f2b" stroke-width="3" marker-end="url(#arrow)"/>
+  <path d="M720 470 V520" fill="none" stroke="#6c1f2b" stroke-width="3" marker-end="url(#arrow)"/>
+  <rect x="40" y="530" width="420" height="145" rx="16" fill="#fffdf8" stroke="#cfc6b7" stroke-width="2"/>
+  <text x="64" y="567" class="label">Generation providers</text>
+  <text x="64" y="599" class="detail">Gemini or local models via Ollama</text>
+  <text x="64" y="626" class="detail">Deterministic mode for tests</text>
+  <rect x="500" y="530" width="420" height="145" rx="16" fill="#fffdf8" stroke="#cfc6b7" stroke-width="2"/>
+  <text x="524" y="567" class="label">PostgreSQL</text>
+  <text x="524" y="599" class="detail">Platform persistence</text>
+  <rect x="80" y="725" width="800" height="230" rx="20" fill="#f1eddf" stroke="#9a9a72" stroke-width="2"/>
+  <text x="104" y="766" class="label">Progressive blueprint workflow</text>
+  <text x="104" y="805" class="detail">Clarification → Functional analysis → Capabilities</text>
+  <text x="104" y="844" class="detail">Data boundaries → Tools and permissions → Risk / safety review</text>
+  <text x="104" y="883" class="detail">Implementation backlog → Test strategy → Quality scoring</text>
+  <text x="104" y="922" class="detail">Decision traceability and audit throughout the workflow</text>
+  <path d="M480 470 V705" fill="none" stroke="#6c1f2b" stroke-width="3" marker-end="url(#arrow)"/>
+  <path d="M480 955 V995" fill="none" stroke="#6c1f2b" stroke-width="3" marker-end="url(#arrow)"/>
+  <rect x="160" y="1005" width="640" height="105" rx="16" fill="#f1eddf" stroke="#73744b" stroke-width="2"/>
+  <text x="184" y="1042" class="label">Human validation</text>
+  <text x="184" y="1074" class="detail">Review the structured blueprint before export.</text>
+  <path d="M480 1110 V1150" fill="none" stroke="#6c1f2b" stroke-width="3" marker-end="url(#arrow)"/>
+  <rect x="160" y="1160" width="640" height="110" rx="16" fill="#fffdf8" stroke="#cfc6b7" stroke-width="2"/>
+  <text x="184" y="1197" class="label">Blueprint exports</text>
+  <text x="184" y="1229" class="detail">Markdown · JSON · ZIP · CSV</text>
+  <text x="40" y="1342" class="detail">Synthesized from the project description.</text>
+</svg>
