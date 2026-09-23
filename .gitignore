@@ -22,3 +22,5 @@ dist-ssr
 *.sw?
 .env
 /.design-ideation/
+/public/images/optimized/
+/.wrangler/

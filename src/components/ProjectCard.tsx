@@ -13,7 +13,7 @@ export default function ProjectCard({ project, large = false }: { project: Proje
       <p>{text(project.summary)}</p>
       <div className="project-card__footer">
         <span>{project.tech.slice(0, 3).join(' · ')}</span>
-        <Link to={`/${locale}/projects/${project.id}`}>{d.openCase}<ArrowUpRight size={18} /></Link>
+        <Link to={`/${locale}/projects/${project.id}`}>{d.openCase}: {project.title}<ArrowUpRight size={18} /></Link>
       </div>
     </article>
   );

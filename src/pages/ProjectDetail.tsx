@@ -1,7 +1,8 @@
-import { ArrowLeft, ArrowRight, CheckCircle2, ShieldCheck } from 'lucide-react';
+import { ArrowRight, CheckCircle2, ShieldCheck } from 'lucide-react';
 import { Link, useParams } from 'react-router-dom';
 import ArchitectureDiagram from '../components/ArchitectureDiagram';
 import ArchitectureFlow from '../components/ArchitectureFlow';
+import ResponsiveImage from '../components/ResponsiveImage';
 import TechTag from '../components/TechTag';
 import { getProject, projects } from '../data/portfolioProjects';
 import { useLocale } from '../i18n';
@@ -17,7 +18,7 @@ export default function ProjectDetail() {
   return (
     <article className="case-study">
       <header className="case-hero page-section">
-        <Link className="back-link" to={`/${locale}/projects`}><ArrowLeft />{d.backProjects}</Link>
+        <nav className="breadcrumbs" aria-label={d.breadcrumbs}><Link to={`/${locale}`}>{d.home}</Link><span>/</span><Link to={`/${locale}/projects`}>{d.projects}</Link><span>/</span><span aria-current="page">{project.title}</span></nav>
         <div className="case-title-row">
           <div><p className="eyebrow">{d.caseStudy} / {project.number}</p><h1>{text(project.headline)}</h1><p className="page-lead">{text(project.summary)}</p></div>
           <strong className="case-number">{project.number}</strong>
@@ -29,7 +30,7 @@ export default function ProjectDetail() {
           <div><dt>{d.year}</dt><dd>{project.year}</dd></div>
         </dl>
         <figure className="case-cover">
-          <img src={project.media[0].src} alt={text(project.media[0].alt)} />
+          <ResponsiveImage src={project.media[0].src} alt={text(project.media[0].alt)} sizes="(max-width: 820px) calc(100vw - 40px), 80vw" priority />
           <figcaption><span>{project.media[0].kind === 'concept-visual' ? d.conceptual : d.verified}</span>{text(project.media[0].caption)}</figcaption>
         </figure>
       </header>
@@ -44,7 +45,7 @@ export default function ProjectDetail() {
         <ol className="flow-grid">{project.flow.map((step, i) => <li key={step.title.en}><span>0{i + 1}</span><h3>{text(step.title)}</h3><p>{text(step.description)}</p></li>)}</ol>
       </section>
 
-      {project.media.length > 1 && <section className="page-section"><header className="section-heading"><div><p className="eyebrow">04 / PRODUCT</p><h2>{d.gallery}</h2></div></header><div className="media-gallery">{project.media.slice(1).map((media) => <figure key={media.src}><img src={media.src} alt={text(media.alt)} loading="lazy" /><figcaption><span>{d.verified}</span>{text(media.caption)}</figcaption></figure>)}</div></section>}
+      {project.media.length > 1 && <section className="page-section"><header className="section-heading"><div><p className="eyebrow">04 / PRODUCT</p><h2>{d.gallery}</h2></div></header><div className="media-gallery">{project.media.slice(1).map((media) => <figure key={media.src}><ResponsiveImage src={media.src} alt={text(media.alt)} sizes="(max-width: 820px) calc(100vw - 40px), 40vw" /><figcaption><span>{d.verified}</span>{text(media.caption)}</figcaption></figure>)}</div></section>}
 
       <section className="page-section architecture-section">
         <header className="section-heading"><div><p className="eyebrow">05 / SYSTEM</p><h2>{d.system}</h2></div><p>{text(project.architecture.summary)}</p></header>

@@ -1,4 +1,5 @@
 import { Navigate, Route, Routes, useLocation } from 'react-router-dom';
+import SeoManager from './components/SeoManager';
 import Layout from './layout/Layout';
 import { isLocale, preferredLocale } from './i18n';
 import Home from './pages/Home';
@@ -26,22 +27,25 @@ function LocaleGate() {
 
 export default function App() {
   return (
-    <Routes>
-      <Route path="/" element={<RootRedirect />} />
-      {['projects', 'architectures', 'about', 'blog', 'contact'].map((path) => (
-        <Route key={path} path={`/${path}`} element={<LegacyRedirect />} />
-      ))}
-      <Route path="/:locale" element={<LocaleGate />}>
-        <Route index element={<Home />} />
-        <Route path="projects" element={<Projects />} />
-        <Route path="projects/:slug" element={<ProjectDetail />} />
-        <Route path="architectures" element={<Architectures />} />
-        <Route path="about" element={<About />} />
-        <Route path="notes" element={<Notes />} />
-        <Route path="contact" element={<Contact />} />
-        <Route path="*" element={<NotFound />} />
-      </Route>
-      <Route path="*" element={<RootRedirect />} />
-    </Routes>
+    <>
+      <SeoManager />
+      <Routes>
+        <Route path="/" element={<RootRedirect />} />
+        {['projects', 'architectures', 'about', 'blog', 'notes', 'contact'].map((path) => (
+          <Route key={path} path={`/${path}`} element={<LegacyRedirect />} />
+        ))}
+        <Route path="/:locale" element={<LocaleGate />}>
+          <Route index element={<Home />} />
+          <Route path="projects" element={<Projects />} />
+          <Route path="projects/:slug" element={<ProjectDetail />} />
+          <Route path="architectures" element={<Architectures />} />
+          <Route path="about" element={<About />} />
+          <Route path="notes" element={<Notes />} />
+          <Route path="contact" element={<Contact />} />
+          <Route path="*" element={<NotFound />} />
+        </Route>
+        <Route path="*" element={<RootRedirect />} />
+      </Routes>
+    </>
   );
 }

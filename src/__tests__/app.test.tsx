@@ -1,5 +1,5 @@
 import { beforeEach, expect, test } from 'vitest';
-import { fireEvent, render, screen } from '@testing-library/react';
+import { fireEvent, render, screen, waitFor } from '@testing-library/react';
 import { MemoryRouter } from 'react-router-dom';
 import App from '../App';
 import { projects } from '../data/portfolioProjects';
@@ -19,6 +19,23 @@ test('renders a complete case study and switches locale without losing the route
   expect(screen.getByRole('heading', { name: 'Business workflows, without the BPMN burden.' })).toBeInTheDocument();
   fireEvent.click(screen.getByRole('button', { name: /Français/i }));
   expect(screen.getByRole('heading', { name: 'Des workflows métier, sans la complexité du BPMN.' })).toBeInTheDocument();
+});
+
+test('updates localized SEO metadata when the locale changes', async () => {
+  render(<MemoryRouter initialEntries={['/en/projects/buildow']}><App /></MemoryRouter>);
+
+  await waitFor(() => expect(document.documentElement.lang).toBe('en'));
+  expect(document.querySelector<HTMLLinkElement>('link[rel="canonical"]')?.href).toBe(
+    'https://bibalefai.site/en/projects/buildow',
+  );
+
+  fireEvent.click(screen.getByRole('button', { name: /Français/i }));
+
+  await waitFor(() => expect(document.documentElement.lang).toBe('fr'));
+  expect(document.title).toContain('BuildOw');
+  expect(document.querySelector<HTMLLinkElement>('link[rel="canonical"]')?.href).toBe(
+    'https://bibalefai.site/fr/projects/buildow',
+  );
 });
 
 test('every project contains bilingual architecture and evidence content', () => {

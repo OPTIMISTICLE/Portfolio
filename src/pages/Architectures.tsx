@@ -12,7 +12,7 @@ export default function Architectures() {
     <section className="page-section page-intro">
       <p className="eyebrow">02 / SYSTEMS</p><h1>{d.architectureIndex}</h1><p className="page-lead">{d.architectureIntro}</p>
       <div className="architecture-index">{projects.map((project) => <article key={project.id}>
-        <header><div><p className="eyebrow">SYSTEM / {project.number}</p><h2>{project.title}</h2><p>{text(project.architecture.summary)}</p></div><Link to={`/${locale}/projects/${project.id}`}>{d.exploreProject}<ArrowUpRight /></Link></header>
+        <header><div><p className="eyebrow">SYSTEM / {project.number}</p><h2>{project.title}</h2><p>{text(project.architecture.summary)}</p></div><Link to={`/${locale}/projects/${project.id}`}>{d.exploreProject}: {project.title}<ArrowUpRight /></Link></header>
         <ArchitectureDiagram project={project} />
         <ArchitectureFlow project={project} />
         <div className="pattern-list">{project.architecture.patterns.map((pattern) => <TechTag key={pattern.en}>{text(pattern)}</TechTag>)}</div>
