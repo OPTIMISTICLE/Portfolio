@@ -38,12 +38,12 @@ const pageDefinitions: PageDefinition[] = [
   {
     suffix: '',
     title: {
-      en: 'Software Engineer · Backend Systems & Architecture | Boli',
-      fr: 'Ingénieur logiciel · Systèmes backend & architecture | Boli',
+      en: `${siteIdentity.name} | Software Engineer · Backend Systems & Architecture`,
+      fr: `${siteIdentity.name} | Ingénieur logiciel · Systèmes backend & architecture`,
     },
     description: {
-      en: 'Software engineer building backend systems, business workflow platforms, and applied AI products. Currently a full-stack developer at Synelia Group in Abidjan.',
-      fr: 'Ingénieur logiciel : systèmes backend, plateformes de workflow et IA appliquée. Actuellement développeur full-stack chez Synelia Group, basé à Abidjan.',
+      en: `${siteIdentity.name} is a software engineer based in Abidjan, building backend systems, business workflow platforms and applied AI products. Full-stack developer at Synelia Group.`,
+      fr: `${siteIdentity.name}, ingénieur logiciel à Abidjan : systèmes backend, workflows métier et IA appliquée. Développeur full-stack chez Synelia Group.`,
     },
   },
   {
@@ -73,20 +73,20 @@ const pageDefinitions: PageDefinition[] = [
   {
     suffix: '/about',
     title: {
-      en: 'About Boli | Full-stack Developer at Synelia Group',
-      fr: 'À propos de Boli | Développeur full-stack chez Synelia Group',
+      en: `About ${siteIdentity.name} | Full-stack Developer at Synelia Group`,
+      fr: `À propos de ${siteIdentity.name} | Développeur full-stack chez Synelia Group`,
     },
     description: {
-      en: 'Explore Boli’s software engineering experience at Synelia Group, QUANTECH.SOLUTIONS, and Orange Digital Center, alongside his ESATIC degrees and academic AI project.',
-      fr: 'Découvrez le parcours de Boli chez Synelia Group, QUANTECH.SOLUTIONS et Orange Digital Center, ses diplômes ESATIC et son projet académique d’IA.',
+      en: `Explore ${siteIdentity.name}’s software engineering experience at Synelia Group, QUANTECH.SOLUTIONS and Orange Digital Center, plus his ESATIC education and academic AI project.`,
+      fr: `Découvrez le parcours de ${siteIdentity.name} chez Synelia Group, QUANTECH.SOLUTIONS et Orange Digital Center, ses diplômes ESATIC et son projet académique d’IA.`,
     },
     type: 'profile',
   },
   {
     suffix: '/contact',
     title: {
-      en: 'Contact Boli | Software Engineering & Backend Systems',
-      fr: 'Contacter Boli | Ingénierie logicielle et systèmes backend',
+      en: `Contact ${siteIdentity.name} | Software Engineering & Backend Systems`,
+      fr: `Contacter ${siteIdentity.name} | Ingénierie logicielle et systèmes backend`,
     },
     description: {
       en: 'Discuss a workflow, AI, backend, or product architecture challenge with Boli Bi Balefai Mondesir. Based in Abidjan, available internationally.',
@@ -96,7 +96,7 @@ const pageDefinitions: PageDefinition[] = [
   },
   {
     suffix: '/notes',
-    title: { en: 'Architecture Notes | Boli', fr: 'Notes d’architecture | Boli' },
+    title: { en: `Architecture Notes | ${siteIdentity.name}`, fr: `Notes d’architecture | ${siteIdentity.name}` },
     description: {
       en: 'Future writing on software architecture, AI systems, and product engineering.',
       fr: 'Futures publications sur l’architecture logicielle, les systèmes IA et l’ingénierie produit.',
@@ -108,12 +108,12 @@ const pageDefinitions: PageDefinition[] = [
 
 const projectTitleOverrides: Partial<Record<Project['id'], Record<Locale, string>>> = {
   'autonomous-ai-development': {
-    en: 'Autonomous AI Development Architecture Case Study | Boli',
-    fr: 'Développement IA autonome — Étude d’architecture | Boli',
+    en: `Autonomous AI Development Architecture Case Study | ${siteIdentity.name}`,
+    fr: `Développement IA autonome — Étude d’architecture | ${siteIdentity.name}`,
   },
   'photovoltaic-optimization': {
-    en: 'Photovoltaic AI Architecture Case Study | Boli',
-    fr: 'IA photovoltaïque — Étude d’architecture | Boli',
+    en: `Photovoltaic AI Architecture Case Study | ${siteIdentity.name}`,
+    fr: `IA photovoltaïque — Étude d’architecture | ${siteIdentity.name}`,
   },
 };
 
@@ -141,7 +141,7 @@ const personSchema = (locale: Locale) => ({
   worksFor: { '@type': 'Organization', name: currentEmployment.company },
   homeLocation: { '@type': 'Place', name: 'Abidjan, Côte d’Ivoire' },
   sameAs: [siteIdentity.github, siteIdentity.linkedin],
-  knowsAbout: ['Software architecture', 'Workflow automation', 'Applied AI', 'Backend systems', 'Product engineering'],
+  knowsAbout: ['Software architecture', 'Workflow automation', 'Applied AI', 'Backend systems', 'Product engineering', 'Software Engineering', 'Backend Architecture', 'Business Process Management', 'Spring Boot', 'Angular'],
 });
 
 function alternates(suffix: string) {
@@ -258,7 +258,7 @@ function createProjectSeo(project: Project, locale: Locale): SeoDescriptor {
   const canonical = absolute(path);
   const image = absolute(projectImages[project.id] ?? siteIdentity.defaultImage);
   const title = projectTitleOverrides[project.id]?.[locale]
-    ?? (locale === 'fr' ? `${project.title} — Étude d’architecture | Boli` : `${project.title} Architecture Case Study | Boli`);
+    ?? (locale === 'fr' ? `${project.title} — Étude d’architecture | ${siteIdentity.name}` : `${project.title} Architecture Case Study | ${siteIdentity.name}`);
 
   return {
     path,

@@ -5,8 +5,21 @@ import App from '../App';
 import { projects } from '../data/portfolioProjects';
 import { projectDiagrams } from '../data/projectDiagrams';
 import { buildMailto } from '../utils-contact';
+import { siteIdentity } from '../seo';
 
 beforeEach(() => window.localStorage.clear());
+
+test.each([
+  ['en', 'Softwarearchitecture,made tangible.'],
+  ['fr', 'L’architecturelogicielle,rendue tangible.'],
+])('preserves the %s hero heading and adds a visible full-name introduction', (locale, tagline) => {
+  const { container } = render(<MemoryRouter initialEntries={[`/${locale}`]}><App /></MemoryRouter>);
+  const headings = container.querySelectorAll('h1');
+  expect(headings).toHaveLength(1);
+  expect(headings[0]).toHaveTextContent(tagline);
+  expect(container.querySelector('.hero-intro')?.textContent?.startsWith(`${siteIdentity.name} — `)).toBe(true);
+  expect(document.title.startsWith(`${siteIdentity.name} | `)).toBe(true);
+});
 
 test('renders all eight projects from the localized project contract', () => {
   render(<MemoryRouter initialEntries={['/en/projects']}><App /></MemoryRouter>);
@@ -33,6 +46,8 @@ test('updates localized SEO metadata when the locale changes', async () => {
 
   await waitFor(() => expect(document.documentElement.lang).toBe('fr'));
   expect(document.title).toContain('BuildOw');
+  expect(document.title).toContain(siteIdentity.name);
+  expect(document.querySelectorAll('title')).toHaveLength(1);
   expect(document.querySelector<HTMLLinkElement>('link[rel="canonical"]')?.href).toBe(
     'https://bibalefai.site/fr/projects/buildow',
   );

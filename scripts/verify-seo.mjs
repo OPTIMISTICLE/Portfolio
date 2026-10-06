@@ -6,7 +6,7 @@ import { pathToFileURL } from 'node:url';
 const root = process.cwd();
 const dist = path.join(root, 'dist');
 const serverEntry = await import(pathToFileURL(path.join(root, 'dist-ssr', 'entry-server.js')).href);
-const { indexableSeoRoutes, seoRoutes } = serverEntry;
+const { indexableSeoRoutes, seoRoutes, siteIdentity } = serverEntry;
 
 assert.equal(seoRoutes.length, 28, 'Expected 28 localized output routes.');
 assert.equal(indexableSeoRoutes.length, 26, 'Expected 26 indexable routes.');
@@ -16,10 +16,27 @@ for (const route of seoRoutes) {
   const html = await readFile(outputPath, 'utf8');
   assert.match(html, new RegExp(`<html lang="${route.locale}">`), `${route.path} has the wrong document language.`);
   assert.match(html, /<h1[\s>]/, `${route.path} has no server-rendered H1.`);
+  assert.ok(route.title.includes(siteIdentity.name), `${route.path} lost the full name from its title.`);
+  assert.ok(html.match(/<title[^>]*>(.*?)<\/title>/s)?.[1].includes(siteIdentity.name), `${route.path} lost its branded title in generated HTML.`);
   assert.ok(html.includes(`rel="canonical" href="${route.canonical}"`), `${route.path} has the wrong canonical URL.`);
   assert.ok(html.includes('hreflang="en"') && html.includes('hreflang="fr"') && html.includes('hreflang="x-default"'), `${route.path} is missing language alternates.`);
   assert.ok(html.includes('type="application/ld+json"'), `${route.path} is missing JSON-LD.`);
   assert.equal(html.includes('content="noindex,nofollow"'), !route.index, `${route.path} has the wrong robots directive.`);
+
+  if (route.path === `/${route.locale}` || route.path === `/${route.locale}/about`) {
+    assert.equal(route.description.split(siteIdentity.name).length, 2, `${route.path} needs one natural full-name mention in its description.`);
+    const jsonLd = JSON.parse(html.match(/<script[^>]*type="application\/ld\+json"[^>]*>(.*?)<\/script>/s)[1]);
+    const people = jsonLd['@graph'].filter((entity) => entity['@type'] === 'Person');
+    assert.equal(people.length, 1, `${route.path} must define one Person entity.`);
+    assert.equal(people[0].name, siteIdentity.name);
+    assert.deepEqual(people[0].sameAs, [siteIdentity.github, siteIdentity.linkedin]);
+    assert.match(html, /<meta name="google-site-verification" content="[^"]+"/);
+  }
+
+  if (route.path === `/${route.locale}`) {
+    assert.equal((html.match(/<h1[\s>]/g) ?? []).length, 1, `${route.path} must retain a single H1.`);
+    assert.ok(html.includes(`<p class="hero-intro">${siteIdentity.name} — `), `${route.path} is missing its visible full-name introduction.`);
+  }
 }
 
 const sitemap = await readFile(path.join(dist, 'sitemap.xml'), 'utf8');
