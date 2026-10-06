@@ -3,12 +3,13 @@ import { Link } from 'react-router-dom';
 import ProjectCard from '../components/ProjectCard';
 import ResponsiveImage from '../components/ResponsiveImage';
 import { featuredProjects } from '../data/portfolioProjects';
+import { currentEmployment } from '../data/portfolioExperience';
 import { useLocale } from '../i18n';
 
 export default function Home() {
-  const { locale, d } = useLocale();
+  const { locale, text, d } = useLocale();
   const icons = [Workflow, Boxes, Braces];
-  const consultingServices = locale === 'fr' ? [
+  const capabilities = locale === 'fr' ? [
     { title: 'Stratégie et frontières', copy: 'Clarifier les responsabilités, invariants métier, risques et compromis avant l’implémentation.', project: 'buildow', proof: 'BuildOw' },
     { title: 'Workflows et backends sécurisés', copy: 'Concevoir les modèles, API, autorisations et opérations qui soutiennent le produit.', project: 'taskflow', proof: 'TaskFlow' },
     { title: 'IA appliquée et livrable', copy: 'Transformer un cas d’usage IA en pipeline explicable, testable et exploitable par les équipes.', project: 'agentforge', proof: 'AgentForge' },
@@ -28,11 +29,8 @@ export default function Home() {
             <Link className="button button--primary" to={`/${locale}/projects`}>{d.viewProjects}<ArrowRight /></Link>
             <Link className="button button--ghost" to={`/${locale}/contact`}>{d.contactMe}</Link>
           </div>
-          <dl className="hero-stats">
-            <div><dt>08</dt><dd>{d.projects}</dd></div>
-            <div><dt>08</dt><dd>{d.architectures}</dd></div>
-            <div><dt>02</dt><dd>{d.experience}</dd></div>
-          </dl>
+          <p className="profile-current"><span>{d.currentRole}</span>{text(currentEmployment.role)} · {currentEmployment.company}</p>
+          <p className="hero-domains">{d.domains}</p>
         </div>
         <figure className="hero-visual">
           <div className="figure-label"><span>FEATURED SYSTEM</span><b>A.01</b></div>
@@ -46,13 +44,13 @@ export default function Home() {
         </figure>
       </section>
 
-      <section className="page-section consulting-section">
+      <section className="page-section capability-section">
         <header className="section-heading">
-          <div><p className="eyebrow">01 / CONSULTING</p><h2>{d.consulting}</h2></div>
-          <p>{d.consultingIntro}</p>
+          <div><p className="eyebrow">01 / ENGINEERING</p><h2>{d.capabilities}</h2></div>
+          <p>{d.capabilitiesIntro}</p>
         </header>
-        <div className="consulting-grid">
-          {consultingServices.map((service, index) => {
+        <div className="capability-grid">
+          {capabilities.map((service, index) => {
             const Icon = icons[index];
             return <article key={service.title}><Icon /><span>0{index + 1}</span><h3>{service.title}</h3><p>{service.copy}</p><Link to={`/${locale}/projects/${service.project}`}>{d.viewEvidence}: {service.proof}<ArrowRight /></Link></article>;
           })}

@@ -1,6 +1,8 @@
 # Bibal-Efai Portfolio
 
-A bilingual architecture and product engineering portfolio built with React, TypeScript, Vite, and Tailwind CSS. The site presents consulting capabilities, detailed project case studies, and conceptual architecture diagrams in English and French.
+A bilingual software engineering portfolio built with React, TypeScript, Vite, and Tailwind CSS. The site presents professional experience, project case studies, and conceptual architecture diagrams in English and French.
+
+Professional experience, education, and CV downloads are defined in `src/data/portfolioExperience.ts`. The current role is shared by Home, About, and the SEO Person schema. Both downloadable CVs are French versions, focused on software architecture and digital transformation.
 
 ## Local development
 

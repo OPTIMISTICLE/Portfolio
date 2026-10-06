@@ -1,4 +1,5 @@
 import { projects, type Locale, type Project } from './data/portfolioProjects';
+import { currentEmployment } from './data/portfolioExperience';
 
 export const siteIdentity = {
   name: 'Boli Bi Balefai Mondesir',
@@ -37,12 +38,12 @@ const pageDefinitions: PageDefinition[] = [
   {
     suffix: '',
     title: {
-      en: 'Software Architecture Consultant | Boli Bi Balefai Mondesir',
-      fr: 'Consultant en architecture logicielle | Boli Bi Balefai Mondesir',
+      en: 'Software Engineer · Backend Systems & Architecture | Boli',
+      fr: 'Ingénieur logiciel · Systèmes backend & architecture | Boli',
     },
     description: {
-      en: 'Software architecture consulting for workflow platforms, applied AI, secure backend systems, and technical product delivery. Based in Abidjan, working internationally.',
-      fr: 'Conseil en architecture logicielle pour plateformes de workflow, IA appliquée, systèmes backend sécurisés et livraison produit. Basé à Abidjan, actif à l’international.',
+      en: 'Software engineer building backend systems, business workflow platforms, and applied AI products. Currently a full-stack developer at Synelia Group in Abidjan.',
+      fr: 'Ingénieur logiciel : systèmes backend, plateformes de workflow et IA appliquée. Actuellement développeur full-stack chez Synelia Group, basé à Abidjan.',
     },
   },
   {
@@ -72,20 +73,20 @@ const pageDefinitions: PageDefinition[] = [
   {
     suffix: '/about',
     title: {
-      en: 'About Boli | Software Architecture Consultant',
-      fr: 'À propos de Boli | Consultant en architecture logicielle',
+      en: 'About Boli | Full-stack Developer at Synelia Group',
+      fr: 'À propos de Boli | Développeur full-stack chez Synelia Group',
     },
     description: {
-      en: 'Meet Boli Bi Balefai Mondesir, a software architecture consultant and product engineer based in Abidjan and working internationally.',
-      fr: 'Découvrez Boli Bi Balefai Mondesir, consultant en architecture logicielle et ingénieur produit basé à Abidjan, actif à l’international.',
+      en: 'Explore Boli’s software engineering experience at Synelia Group, QUANTECH.SOLUTIONS, and Orange Digital Center, alongside his ESATIC degrees and academic AI project.',
+      fr: 'Découvrez le parcours de Boli chez Synelia Group, QUANTECH.SOLUTIONS et Orange Digital Center, ses diplômes ESATIC et son projet académique d’IA.',
     },
     type: 'profile',
   },
   {
     suffix: '/contact',
     title: {
-      en: 'Hire a Software Architecture Consultant | Boli',
-      fr: 'Faire appel à un consultant en architecture logicielle | Boli',
+      en: 'Contact Boli | Software Engineering & Backend Systems',
+      fr: 'Contacter Boli | Ingénierie logicielle et systèmes backend',
     },
     description: {
       en: 'Discuss a workflow, AI, backend, or product architecture challenge with Boli Bi Balefai Mondesir. Based in Abidjan, available internationally.',
@@ -136,7 +137,8 @@ const personSchema = (locale: Locale) => ({
   name: siteIdentity.name,
   url: absolute(localizedPath(locale, '/about')),
   email: `mailto:${siteIdentity.email}`,
-  jobTitle: locale === 'fr' ? 'Consultant en architecture logicielle et ingénieur produit' : 'Software Architecture Consultant and Product Engineer',
+  jobTitle: currentEmployment.role[locale],
+  worksFor: { '@type': 'Organization', name: currentEmployment.company },
   homeLocation: { '@type': 'Place', name: 'Abidjan, Côte d’Ivoire' },
   sameAs: [siteIdentity.github, siteIdentity.linkedin],
   knowsAbout: ['Software architecture', 'Workflow automation', 'Applied AI', 'Backend systems', 'Product engineering'],

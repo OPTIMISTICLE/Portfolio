@@ -5,6 +5,7 @@ import { pathToFileURL } from 'node:url';
 const root = process.cwd();
 const dist = path.join(root, 'dist');
 const template = await readFile(path.join(dist, 'index.html'), 'utf8');
+const iconHead = (template.match(/<link\b[^>]+rel="(?:icon|apple-touch-icon)"[^>]*>/g) ?? []).join('\n    ');
 const serverEntry = await import(pathToFileURL(path.join(root, 'dist-ssr', 'entry-server.js')).href);
 const { indexableSeoRoutes, render, renderSeoHead, seoRoutes, siteIdentity } = serverEntry;
 
@@ -53,6 +54,7 @@ const redirectDocument = `<!doctype html>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="robots" content="noindex,follow" />
+    ${iconHead}
     <link rel="canonical" href="${siteIdentity.url}/en" />
     <meta http-equiv="refresh" content="0;url=/en" />
     <title>Redirecting to Boli Bi Balefai Mondesir</title>
@@ -68,6 +70,7 @@ const notFoundDocument = `<!doctype html>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="robots" content="noindex,nofollow" />
+    ${iconHead}
     <title>Page not found | Boli Bi Balefai Mondesir</title>
   </head>
   <body>

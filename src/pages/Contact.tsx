@@ -2,6 +2,7 @@ import { Clipboard, Github, Linkedin, Mail, Send } from 'lucide-react';
 import { FormEvent, useState } from 'react';
 import { useLocale } from '../i18n';
 import { buildMailto } from '../utils-contact';
+import ResumeLinks from '../components/ResumeLinks';
 
 const EMAIL = 'bibalefai@gmail.com';
 
@@ -35,6 +36,7 @@ export default function Contact() {
       <a href="https://www.linkedin.com/in/bi-balefai-mondesir-boli-a62a41222/" target="_blank" rel="noreferrer"><Linkedin />LinkedIn</a>
       <a href="https://github.com/OPTIMISTICLE" target="_blank" rel="noreferrer"><Github />GitHub</a>
       <button type="button" onClick={copy}><Clipboard />{copied ? d.copied : d.copyEmail}</button>
+      <p className="eyebrow resume-heading">{d.resumes}</p><ResumeLinks />
     </aside></div>
   </section>;
 }
