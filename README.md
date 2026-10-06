@@ -4,6 +4,8 @@ A bilingual software engineering portfolio built with React, TypeScript, Vite, a
 
 Professional experience, education, and CV downloads are defined in `src/data/portfolioExperience.ts`. The current role is shared by Home, About, and the SEO Person schema. Both downloadable CVs are French versions, focused on software architecture and digital transformation.
 
+The complete training list is defined in `src/data/portfolioCredentials.ts`, with original PDF evidence in `public/credentials/`. About displays all 14 entries in both languages, grouped into completed courses, guided projects, and training badges. Preserve these distinctions when adding credentials; a course completion or Cloud Quest badge is not a professional certification.
+
 ## Local development
 
 ```bash

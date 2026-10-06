@@ -1,7 +1,8 @@
-import { ArrowUpRight, Award, Boxes, Compass, ShieldCheck } from 'lucide-react';
+import { ArrowUpRight, Boxes, Compass, ShieldCheck } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import ResumeLinks from '../components/ResumeLinks';
-import { academicProject, certifications, currentEmployment, education, experience } from '../data/portfolioExperience';
+import CredentialsList from '../components/CredentialsList';
+import { academicProject, currentEmployment, education, experience } from '../data/portfolioExperience';
 import { useLocale } from '../i18n';
 
 export default function About() {
@@ -20,7 +21,7 @@ export default function About() {
     <section><header className="section-heading"><div><p className="eyebrow">02 / TIMELINE</p><h2>{d.experience}</h2></div></header><div className="timeline">{experience.map((entry) => <article key={entry.company}><span>{text(entry.period)}</span><div><h3>{text(entry.role)}</h3><strong>{entry.company}</strong><p>{text(entry.summary)}</p><div className="pattern-list">{entry.tech.map((tech) => <span className="tech-tag" key={tech}>{tech}</span>)}</div></div></article>)}</div></section>
     <section><header className="section-heading"><div><p className="eyebrow">03 / EDUCATION</p><h2>{d.education}</h2></div></header><div className="timeline">{education.map((entry) => <article key={entry.degree.en}><span>{text(entry.period)}</span><div><h3>{text(entry.degree)}</h3><strong>{entry.institution}</strong><p>{text(entry.summary)}</p></div></article>)}</div></section>
     <section><header className="section-heading"><div><p className="eyebrow">04 / RESEARCH</p><h2>{d.academicProject}</h2></div></header><div className="timeline"><article><span>{text(academicProject.period)}</span><div><h3>{text(academicProject.title)}</h3><strong>{academicProject.institution}</strong><p>{text(academicProject.summary)}</p><div className="pattern-list">{academicProject.tech.map((tech) => <span className="tech-tag" key={tech}>{tech}</span>)}</div><Link className="profile-project-link" to={`/${locale}/projects/${academicProject.projectId}`}>{d.exploreProject}<ArrowUpRight size={16} /></Link></div></article></div></section>
-    <section><header className="section-heading"><div><p className="eyebrow">05 / CREDENTIALS</p><h2>{d.certifications}</h2></div></header><div className="cert-grid">{certifications.map((cert) => <a href={cert.url} target="_blank" rel="noreferrer" key={cert.name}><Award /><span><strong>{cert.name}</strong><small>{cert.year}</small></span><ArrowUpRight /></a>)}</div></section>
+    <section id="credentials"><header className="section-heading"><div><p className="eyebrow">05 / CREDENTIALS</p><h2>{d.certifications}</h2></div></header><CredentialsList /></section>
     <section><header className="section-heading"><div><p className="eyebrow">06 / LANGUAGES</p><h2>{d.languages}</h2></div></header><p>{d.languageSkills}</p></section>
   </section>;
 }

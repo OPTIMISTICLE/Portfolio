@@ -50,8 +50,3 @@ export const resumes = [
   { title: l('Software architecture CV (French)', 'CV architecture logicielle (français)'), href: '/cv/boli-mondesir-software-architecture-fr.pdf' },
   { title: l('Digital transformation CV (French)', 'CV transformation digitale (français)'), href: '/cv/boli-mondesir-digital-transformation-fr.pdf' },
 ];
-
-export const certifications = [
-  { name: 'Python Pro Bootcamp', year: '2026', url: 'https://www.udemy.com/certificate/UC-b614166c-9511-4575-85a3-9d46b268e676/' },
-  { name: 'AWS Cloud Quest — Cloud Practitioner', year: '2025', url: 'https://www.credly.com/badges/96340afe-5826-4e0a-9b5b-2d3050b34236' },
-];
