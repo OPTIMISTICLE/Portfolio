@@ -6,7 +6,7 @@ Professional experience, education, and CV downloads are defined in `src/data/po
 
 The complete training list is defined in `src/data/portfolioCredentials.ts`, with original PDF evidence in `public/credentials/`. About displays all 14 entries in both languages, grouped into completed courses, guided projects, and training badges. Preserve these distinctions when adding credentials; a course completion or Cloud Quest badge is not a professional certification.
 
-## Local development
+## Local development 
 
 ```bash
 npm ci
