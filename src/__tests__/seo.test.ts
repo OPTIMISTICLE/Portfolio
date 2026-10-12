@@ -1,5 +1,5 @@
 import { expect, test } from 'vitest';
-import { indexableSeoRoutes, renderSeoHead, seoRoutes, siteIdentity } from '../seo';
+import { getSeoForPath, indexableSeoRoutes, renderSeoHead, seoRoutes, siteIdentity } from '../seo';
 
 test('defines complete bilingual SEO metadata for every public route', () => {
   expect(seoRoutes).toHaveLength(28);
@@ -76,4 +76,25 @@ test('renders canonical, language, social, robots, and structured-data head tags
   expect(head).toContain('name="twitter:card"');
   expect(head).toContain('name="robots" content="index,follow,max-image-preview:large"');
   expect(head).toContain('type="application/ld+json"');
+});
+
+test('uses review dates in case-study schema and leaves unreviewed dates unset', () => {
+  for (const route of seoRoutes.filter((seo) => seo.path.includes('/projects/'))) {
+    const graph = route.structuredData['@graph'] as Record<string, unknown>[];
+    const work = graph.find((entity) => entity['@type'] === 'CreativeWork')!;
+    expect(work.dateModified).toBe(route.lastModified);
+    expect(Boolean(route.lastModified)).toBe(/\/(buildow|taskflow|agentforge)$/.test(route.path));
+  }
+});
+
+test('fallback social images have matching alt text and unknown routes stay noindex', () => {
+  const home = getSeoForPath('/en');
+  const taskflow = getSeoForPath('/en/projects/taskflow');
+  expect(taskflow.image).toBe(home.image);
+  expect(taskflow.imageAlt).toBe(home.imageAlt);
+  const head = document.createElement('div');
+  head.innerHTML = renderSeoHead(taskflow);
+  expect(head.querySelector('meta[name="twitter:image:alt"]')?.getAttribute('content')).toBe(taskflow.imageAlt);
+  expect(getSeoForPath('/fr/projects/nonexistent').index).toBe(false);
+  expect(getSeoForPath('/en/notes').index).toBe(false);
 });

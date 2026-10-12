@@ -30,7 +30,7 @@ test('renders all eight projects from the localized project contract', () => {
 test('renders a complete case study and switches locale without losing the route', () => {
   render(<MemoryRouter initialEntries={['/en/projects/buildow']}><App /></MemoryRouter>);
   expect(screen.getByRole('heading', { name: 'Business workflows, without the BPMN burden.' })).toBeInTheDocument();
-  fireEvent.click(screen.getByRole('button', { name: /Français/i }));
+  fireEvent.click(screen.getByRole('link', { name: /Français/i }));
   expect(screen.getByRole('heading', { name: 'Des workflows métier, sans la complexité du BPMN.' })).toBeInTheDocument();
 });
 
@@ -42,7 +42,7 @@ test('updates localized SEO metadata when the locale changes', async () => {
     'https://bibalefai.site/en/projects/buildow',
   );
 
-  fireEvent.click(screen.getByRole('button', { name: /Français/i }));
+  fireEvent.click(screen.getByRole('link', { name: /Français/i }));
 
   await waitFor(() => expect(document.documentElement.lang).toBe('fr'));
   expect(document.title).toContain('BuildOw');
@@ -61,6 +61,26 @@ test('every project contains bilingual architecture and evidence content', () =>
     expect(project.media[0].alt.en).toBeTruthy();
     expect(project.media[0].alt.fr).toBeTruthy();
   });
+});
+
+test('language links preserve the project, query and fragment', () => {
+  render(<MemoryRouter initialEntries={['/en/projects/buildow?ref=profile#system']}><App /></MemoryRouter>);
+  expect(screen.getByRole('link', { name: /Français/i })).toHaveAttribute('href', '/fr/projects/buildow?ref=profile#system');
+});
+
+test.each(['en', 'fr'])('links %s professional experience to the relevant case studies', (locale) => {
+  const { container } = render(<MemoryRouter initialEntries={[`/${locale}/about`]}><App /></MemoryRouter>);
+  expect(container.querySelector('.page-lead')).toHaveTextContent(siteIdentity.name);
+  for (const id of ['buildow', 'iot-energy-management', 'photovoltaic-optimization']) {
+    expect(container.querySelector(`a[href="/${locale}/projects/${id}"]`)).toBeInTheDocument();
+  }
+});
+
+test.each(projects.filter((project) => project.featured).flatMap((project) => ['en', 'fr'].map((locale) => ({ project, locale }))))('renders contribution, evidence limits and review date for $project.id in $locale', ({ project, locale }) => {
+  const { container } = render(<MemoryRouter initialEntries={[`/${locale}/projects/${project.id}`]}><App /></MemoryRouter>);
+  expect(screen.getByRole('heading', { name: locale === 'en' ? 'My contribution' : 'Ma contribution' })).toBeInTheDocument();
+  expect(screen.getByRole('heading', { name: locale === 'en' ? 'Evidence & limitations' : 'Preuves et limites' })).toBeInTheDocument();
+  expect(container.querySelector('time')).toHaveAttribute('datetime', project.review!.date);
 });
 
 test('renders every available conceptual diagram in the architecture index', () => {

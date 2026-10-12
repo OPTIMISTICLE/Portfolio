@@ -6,7 +6,7 @@ import { useLocale } from '../i18n';
 
 export default function Navbar() {
   const [open, setOpen] = useState(false);
-  const { locale, d, switchLocale } = useLocale();
+  const { locale, d, alternatePath } = useLocale();
   const links = [
     { path: '', label: d.home, end: true },
     { path: '/projects', label: d.projects },
@@ -36,7 +36,7 @@ export default function Navbar() {
             </NavLink>
           ))}
         </nav>
-        <button className="language-switch" type="button" onClick={switchLocale}><Languages size={17} /> {d.language}</button>
+        <Link className="language-switch" to={alternatePath} lang={locale === 'en' ? 'fr' : 'en'} hrefLang={locale === 'en' ? 'fr' : 'en'} onClick={() => setOpen(false)}><Languages size={17} /> {d.language}</Link>
         <p className="availability"><i />{d.available}</p>
         <p className="rail-signature">{d.footer}</p>
       </div>

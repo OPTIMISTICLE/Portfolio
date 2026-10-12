@@ -1,6 +1,6 @@
 /* eslint-disable react-refresh/only-export-components */
 import { createContext, useContext, useEffect, useMemo } from 'react';
-import { useLocation, useNavigate, useParams } from 'react-router-dom';
+import { useLocation, useParams } from 'react-router-dom';
 import type { Locale, LocalizedText } from './data/portfolioProjects';
 
 type Dictionary = { [K in keyof typeof dictionaries.en]: (typeof dictionaries.en)[K] extends readonly string[] ? readonly string[] : string };
@@ -19,7 +19,8 @@ const dictionaries = {
     all: 'All', openCase: 'Open case study', caseStudy: 'Case study', backProjects: 'Projects', role: 'Role', scope: 'Scope', status: 'Status', year: 'Year',
     problem: 'The problem', response: 'The response', productFlow: 'Product flow', decisions: 'Architecture decisions', system: 'System architecture', reliability: 'Security & reliability', outcomes: 'Outcomes & evidence', stack: 'Technology stack', gallery: 'Product evidence', next: 'Next project',
     architectureIndex: 'Architecture index', architectureIntro: 'Conceptual views of the boundaries, flows, and decisions behind every product.', patterns: 'Design patterns', exploreProject: 'Explore the project',
-    aboutTitle: 'Building software, thinking in systems.', aboutIntro: 'I am a software engineer based in Abidjan. My work connects full-stack development, backend architecture, business process digitalization, and applied AI.',
+    contribution: 'My contribution', evidenceScope: 'Evidence & limitations', reviewed: 'Case study updated',
+    aboutTitle: 'Building software, thinking in systems.', aboutIntro: 'I am Boli Bi Balefai Mondesir, a software engineer based in Abidjan. My work connects full-stack development, backend architecture, business process digitalization, and applied AI.',
     approach: 'Working principles', experience: 'Professional experience', certifications: 'Training & credentials', education: 'Education', academicProject: 'Academic project', languages: 'Languages', languageSkills: 'French: native · English: C1', resumes: 'Download a CV', progression: 'My experience spans connected-system APIs at Orange Digital Center, workflow platform engineering at QUANTECH.SOLUTIONS, and my current full-stack role at Synelia Group.',
     notesTitle: 'Notes', notesIntro: 'Verified writing on architecture, AI systems, and product engineering.', notesEmpty: 'No verified publication is listed yet. Project case studies currently hold the detailed technical writing.',
     contactTitle: 'Let’s make the system clear.', contactIntro: 'Get in touch about software engineering, backend systems, business workflows, or applied AI. I am based in Abidjan and currently work as a full-stack developer at Synelia Group.',
@@ -39,7 +40,8 @@ const dictionaries = {
     all: 'Tous', openCase: 'Ouvrir l’étude de cas', caseStudy: 'Étude de cas', backProjects: 'Projets', role: 'Rôle', scope: 'Périmètre', status: 'Statut', year: 'Année',
     problem: 'Le problème', response: 'La réponse', productFlow: 'Parcours produit', decisions: 'Décisions d’architecture', system: 'Architecture système', reliability: 'Sécurité et fiabilité', outcomes: 'Résultats et preuves', stack: 'Stack technique', gallery: 'Preuves produit', next: 'Projet suivant',
     architectureIndex: 'Index des architectures', architectureIntro: 'Vues conceptuelles des frontières, flux et décisions derrière chaque produit.', patterns: 'Patterns de conception', exploreProject: 'Explorer le projet',
-    aboutTitle: 'Construire le logiciel, penser le système.', aboutIntro: 'Je suis ingénieur logiciel basé à Abidjan. Mon travail relie développement full-stack, architecture backend, digitalisation des processus métier et IA appliquée.',
+    contribution: 'Ma contribution', evidenceScope: 'Preuves et limites', reviewed: 'Étude de cas mise à jour',
+    aboutTitle: 'Construire le logiciel, penser le système.', aboutIntro: 'Je suis Boli Bi Balefai Mondesir, ingénieur logiciel basé à Abidjan. Mon travail relie développement full-stack, architecture backend, digitalisation des processus métier et IA appliquée.',
     approach: 'Principes de travail', experience: 'Expériences professionnelles', certifications: 'Formations et badges', education: 'Formation académique', academicProject: 'Projet académique', languages: 'Langues', languageSkills: 'Français : langue maternelle · Anglais : C1', resumes: 'Télécharger un CV', progression: 'Mon parcours relie les API de systèmes connectés chez Orange Digital Center, le développement d’une plateforme de workflow chez QUANTECH.SOLUTIONS et mon poste actuel de développeur full-stack chez Synelia Group.',
     notesTitle: 'Notes', notesIntro: 'Publications vérifiées sur l’architecture, les systèmes IA et l’ingénierie produit.', notesEmpty: 'Aucune publication vérifiée n’est encore listée. Les études de cas rassemblent actuellement les analyses techniques détaillées.',
     contactTitle: 'Rendons le système clair.', contactIntro: 'Échangeons sur l’ingénierie logicielle, les systèmes backend, les workflows métier ou l’IA appliquée. Basé à Abidjan, je suis actuellement développeur full-stack chez Synelia Group.',
@@ -48,7 +50,7 @@ const dictionaries = {
   },
 } as const;
 
-interface LocaleContextValue { locale: Locale; d: Dictionary; text: (value: LocalizedText) => string; switchLocale: () => void }
+interface LocaleContextValue { locale: Locale; d: Dictionary; text: (value: LocalizedText) => string; alternatePath: string }
 const LocaleContext = createContext<LocaleContextValue | null>(null);
 export const isLocale = (value?: string): value is Locale => value === 'en' || value === 'fr';
 
@@ -61,7 +63,6 @@ export function preferredLocale(): Locale {
 export function LocaleProvider({ children }: { children: React.ReactNode }) {
   const { locale: rawLocale } = useParams();
   const location = useLocation();
-  const navigate = useNavigate();
   const locale: Locale = isLocale(rawLocale) ? rawLocale : 'en';
 
   useEffect(() => {
@@ -73,13 +74,8 @@ export function LocaleProvider({ children }: { children: React.ReactNode }) {
     locale,
     d: dictionaries[locale],
     text: (copy) => copy[locale],
-    switchLocale: () => {
-      const next: Locale = locale === 'en' ? 'fr' : 'en';
-      const segments = location.pathname.split('/');
-      segments[1] = next;
-      navigate(segments.join('/') + location.search + location.hash);
-    },
-  }), [locale, location.hash, location.pathname, location.search, navigate]);
+    alternatePath: location.pathname.replace(/^\/(en|fr)(?=\/|$)/, locale === 'en' ? '/fr' : '/en') + location.search + location.hash,
+  }), [locale, location.hash, location.pathname, location.search]);
 
   return <LocaleContext.Provider value={value}>{children}</LocaleContext.Provider>;
 }

@@ -11,12 +11,12 @@ export const experience = [
   {
     company: 'QUANTECH.SOLUTIONS', role: l('Software Engineer', 'Ingénieur logiciel'), period: l('March 2026 — October 2026', 'Mars 2026 — Octobre 2026'),
     summary: l('Designed and developed BuildOw, a multi-organization workflow platform. Worked on the modular architecture, data models, REST APIs, dynamic forms, assignment policies, access rules, and audit trails.', 'Conception et développement de BuildOw, plateforme de workflows multi-organisation : architecture modulaire, modèles de données, API REST, formulaires dynamiques, affectations, droits d’accès et traçabilité.'),
-    tech: ['Java 21', 'Spring Boot', 'Spring Security', 'Angular', 'PostgreSQL', 'Docker'],
+    tech: ['Java 21', 'Spring Boot', 'Spring Security', 'Angular', 'PostgreSQL', 'Docker'], projectId: 'buildow',
   },
   {
     company: 'Orange Digital Center', role: l('Software Engineer', 'Ingénieur logiciel'), period: l('April 2024 — November 2024', 'Avril 2024 — Novembre 2024'),
     summary: l('Contributed to an IoT energy management system connecting sensors, backend services, databases, and a mobile application. Designed real-time REST APIs and data collection flows within an Agile team.', 'Contribution à un système IoT de gestion énergétique reliant capteurs, services backend, bases de données et application mobile. Conception d’API REST temps réel et de flux de collecte au sein d’une équipe Agile.'),
-    tech: ['Node.js', 'Express', 'Arduino', 'Flutter', 'MySQL', 'MongoDB', 'REST'],
+    tech: ['Node.js', 'Express', 'Arduino', 'Flutter', 'MySQL', 'MongoDB', 'REST'], projectId: 'iot-energy-management',
   },
 ];
 

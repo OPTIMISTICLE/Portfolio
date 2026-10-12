@@ -40,6 +40,11 @@ export default function ProjectDetail() {
         <div><p className="eyebrow">02 / RESPONSE</p><h2>{d.response}</h2><p>{text(project.solution)}</p></div>
       </section>
 
+      {project.review && <section className="page-section split-narrative">
+        <div><h2>{d.contribution}</h2><p>{text(project.review.contribution)}</p></div>
+        <div><h2>{d.evidenceScope}</h2><p>{text(project.review.evidence)}</p><p>{d.reviewed}: <time dateTime={project.review.date}>{new Intl.DateTimeFormat(locale, { year: 'numeric', month: 'long', day: 'numeric', timeZone: 'UTC' }).format(new Date(`${project.review.date}T00:00:00Z`))}</time></p></div>
+      </section>}
+
       <section className="page-section">
         <header className="section-heading"><div><p className="eyebrow">03 / EXPERIENCE</p><h2>{d.productFlow}</h2></div></header>
         <ol className="flow-grid">{project.flow.map((step, i) => <li key={step.title.en}><span>0{i + 1}</span><h3>{text(step.title)}</h3><p>{text(step.description)}</p></li>)}</ol>

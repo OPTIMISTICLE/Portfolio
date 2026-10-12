@@ -5,6 +5,9 @@ import { pathToFileURL } from 'node:url';
 const root = process.cwd();
 const dist = path.join(root, 'dist');
 const template = await readFile(path.join(dist, 'index.html'), 'utf8');
+if (!template.includes('<!--seo-head-->') || !template.includes('<!--app-html-->')) {
+  throw new Error('Prerender requires the Vite client template. Run npm run build:client before npm run prerender, or use npm run build.');
+}
 const iconHead = (template.match(/<link\b[^>]+rel="(?:icon|apple-touch-icon)"[^>]*>/g) ?? []).join('\n    ');
 const serverEntry = await import(pathToFileURL(path.join(root, 'dist-ssr', 'entry-server.js')).href);
 const { indexableSeoRoutes, render, renderSeoHead, seoRoutes, siteIdentity } = serverEntry;
@@ -35,7 +38,7 @@ const escapeXml = (value) => value
 
 const sitemapEntries = indexableSeoRoutes.map((route) => `  <url>
     <loc>${escapeXml(route.canonical)}</loc>
-    <xhtml:link rel="alternate" hreflang="en" href="${escapeXml(route.alternates.en)}" />
+    ${route.lastModified ? `<lastmod>${escapeXml(route.lastModified)}</lastmod>\n    ` : ''}<xhtml:link rel="alternate" hreflang="en" href="${escapeXml(route.alternates.en)}" />
     <xhtml:link rel="alternate" hreflang="fr" href="${escapeXml(route.alternates.fr)}" />
     <xhtml:link rel="alternate" hreflang="x-default" href="${escapeXml(route.alternates.xDefault)}" />
   </url>`).join('\n');
