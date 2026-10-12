@@ -22,6 +22,7 @@ export interface SeoDescriptor {
   imageAlt: string;
   type: 'website' | 'article' | 'profile';
   index: boolean;
+  lastModified?: string;
   structuredData: Record<string, unknown>;
 }
 
@@ -32,25 +33,26 @@ interface PageDefinition {
   type?: SeoDescriptor['type'];
   index?: boolean;
   schemaType?: 'WebPage' | 'CollectionPage' | 'ContactPage';
+  lastModified?: string;
 }
 
 const pageDefinitions: PageDefinition[] = [
   {
     suffix: '',
     title: {
-      en: `${siteIdentity.name} | Software Engineer · Backend Systems & Architecture`,
-      fr: `${siteIdentity.name} | Ingénieur logiciel · Systèmes backend & architecture`,
+      en: `${siteIdentity.name} | Software Engineer`,
+      fr: `${siteIdentity.name} | Ingénieur logiciel`,
     },
     description: {
-      en: `${siteIdentity.name} is a software engineer based in Abidjan, building backend systems, business workflow platforms and applied AI products. Full-stack developer at Synelia Group.`,
+      en: `${siteIdentity.name}, software engineer in Abidjan and full-stack developer at Synelia Group. Explore backend, workflow and applied AI projects.`,
       fr: `${siteIdentity.name}, ingénieur logiciel à Abidjan : systèmes backend, workflows métier et IA appliquée. Développeur full-stack chez Synelia Group.`,
     },
   },
   {
     suffix: '/projects',
     title: {
-      en: 'Software Architecture Case Studies | Boli Bi Balefai Mondesir',
-      fr: 'Études de cas en architecture logicielle | Boli Bi Balefai Mondesir',
+      en: 'Project Case Studies | Boli Bi Balefai Mondesir',
+      fr: 'Études de projets | Boli Bi Balefai Mondesir',
     },
     description: {
       en: 'Eight software architecture case studies covering workflow automation, AI products, enterprise platforms, IoT, and energy systems.',
@@ -61,8 +63,8 @@ const pageDefinitions: PageDefinition[] = [
   {
     suffix: '/architectures',
     title: {
-      en: 'System Architecture Portfolio | Boli Bi Balefai Mondesir',
-      fr: 'Portfolio d’architectures système | Boli Bi Balefai Mondesir',
+      en: 'System Architectures | Boli Bi Balefai Mondesir',
+      fr: 'Architectures système | Boli Bi Balefai Mondesir',
     },
     description: {
       en: 'Conceptual system views explaining boundaries, data flows, security decisions, and delivery trade-offs across eight software products.',
@@ -73,20 +75,21 @@ const pageDefinitions: PageDefinition[] = [
   {
     suffix: '/about',
     title: {
-      en: `About ${siteIdentity.name} | Full-stack Developer at Synelia Group`,
-      fr: `À propos de ${siteIdentity.name} | Développeur full-stack chez Synelia Group`,
+      en: `About ${siteIdentity.name} | Experience`,
+      fr: `À propos de ${siteIdentity.name} | Parcours`,
     },
     description: {
-      en: `Explore ${siteIdentity.name}’s software engineering experience at Synelia Group, QUANTECH.SOLUTIONS and Orange Digital Center, plus his ESATIC education and academic AI project.`,
-      fr: `Découvrez le parcours de ${siteIdentity.name} chez Synelia Group, QUANTECH.SOLUTIONS et Orange Digital Center, ses diplômes ESATIC et son projet académique d’IA.`,
+      en: `${siteIdentity.name}’s engineering experience at Synelia Group, QUANTECH.SOLUTIONS and Orange Digital Center, ESATIC education and project case studies.`,
+      fr: `Le parcours de ${siteIdentity.name} chez Synelia Group, QUANTECH.SOLUTIONS et Orange Digital Center, sa formation ESATIC et ses études de projets.`,
     },
     type: 'profile',
+    lastModified: '2026-10-12',
   },
   {
     suffix: '/contact',
     title: {
-      en: `Contact ${siteIdentity.name} | Software Engineering & Backend Systems`,
-      fr: `Contacter ${siteIdentity.name} | Ingénierie logicielle et systèmes backend`,
+      en: `Contact ${siteIdentity.name}`,
+      fr: `Contacter ${siteIdentity.name}`,
     },
     description: {
       en: 'Discuss a workflow, AI, backend, or product architecture challenge with Boli Bi Balefai Mondesir. Based in Abidjan, available internationally.',
@@ -108,12 +111,12 @@ const pageDefinitions: PageDefinition[] = [
 
 const projectTitleOverrides: Partial<Record<Project['id'], Record<Locale, string>>> = {
   'autonomous-ai-development': {
-    en: `Autonomous AI Development Architecture Case Study | ${siteIdentity.name}`,
-    fr: `Développement IA autonome — Étude d’architecture | ${siteIdentity.name}`,
+    en: `Autonomous AI Development | ${siteIdentity.name}`,
+    fr: `Développement IA autonome | ${siteIdentity.name}`,
   },
   'photovoltaic-optimization': {
-    en: `Photovoltaic AI Architecture Case Study | ${siteIdentity.name}`,
-    fr: `IA photovoltaïque — Étude d’architecture | ${siteIdentity.name}`,
+    en: `Photovoltaic AI Project | ${siteIdentity.name}`,
+    fr: `Projet IA photovoltaïque | ${siteIdentity.name}`,
   },
 };
 
@@ -121,6 +124,16 @@ const projectImages: Partial<Record<Project['id'], string>> = {
   buildow: '/images/optimized/og/buildow.jpg',
   agentforge: '/images/optimized/og/agentforge.jpg',
   woody: '/images/optimized/og/woody.jpg',
+};
+
+const defaultImageAlt = {
+  en: 'Conceptual software system and architecture layers.',
+  fr: 'Système logiciel conceptuel et couches d’architecture.',
+};
+const projectImageAlts: Partial<Record<Project['id'], Record<Locale, string>>> = {
+  buildow: { en: 'Conceptual BuildOw workflow studio and architecture overview.', fr: 'Vue conceptuelle du studio de workflow et de l’architecture BuildOw.' },
+  agentforge: { en: 'AgentForge guided blueprint intake screen.', fr: 'Écran de saisie guidée d’un blueprint AgentForge.' },
+  woody: { en: 'Person wearing a red polo shirt against a wooden background.', fr: 'Personne portant un polo rouge devant un fond en bois.' },
 };
 
 const normalizePath = (value: string) => {
@@ -184,6 +197,7 @@ function genericStructuredData(definition: PageDefinition, locale: Locale, canon
           url: canonical,
           inLanguage: language,
           mainEntity: { '@id': `${siteIdentity.url}/#person` },
+          ...(definition.lastModified ? { dateModified: definition.lastModified } : {}),
         },
         person,
       ],
@@ -213,9 +227,10 @@ function createPageSeo(definition: PageDefinition, locale: Locale): SeoDescripto
     canonical,
     alternates: alternates(definition.suffix),
     image: absolute(siteIdentity.defaultImage),
-    imageAlt: locale === 'fr' ? 'Système logiciel conceptuel et couches d’architecture.' : 'Conceptual software system and architecture layers.',
+    imageAlt: defaultImageAlt[locale],
     type: definition.type ?? 'website',
     index: definition.index ?? true,
+    lastModified: definition.lastModified,
     structuredData: genericStructuredData(definition, locale, canonical),
   };
 }
@@ -237,6 +252,7 @@ function projectStructuredData(project: Project, locale: Locale, canonical: stri
         inLanguage: locale === 'fr' ? 'fr-FR' : 'en',
         creator: { '@id': `${siteIdentity.url}/#person` },
         image,
+        ...(project.review ? { dateModified: project.review.date } : {}),
         keywords: [...project.tech, ...project.architecture.patterns.map((pattern) => pattern[locale])],
       },
       {
@@ -258,7 +274,7 @@ function createProjectSeo(project: Project, locale: Locale): SeoDescriptor {
   const canonical = absolute(path);
   const image = absolute(projectImages[project.id] ?? siteIdentity.defaultImage);
   const title = projectTitleOverrides[project.id]?.[locale]
-    ?? (locale === 'fr' ? `${project.title} — Étude d’architecture | ${siteIdentity.name}` : `${project.title} Architecture Case Study | ${siteIdentity.name}`);
+    ?? (locale === 'fr' ? `${project.title} — Étude de cas | ${siteIdentity.name}` : `${project.title} Case Study | ${siteIdentity.name}`);
 
   return {
     path,
@@ -268,9 +284,10 @@ function createProjectSeo(project: Project, locale: Locale): SeoDescriptor {
     canonical,
     alternates: alternates(suffix),
     image,
-    imageAlt: project.media[0].alt[locale],
+    imageAlt: projectImageAlts[project.id]?.[locale] ?? defaultImageAlt[locale],
     type: 'article',
     index: true,
+    lastModified: project.review?.date,
     structuredData: projectStructuredData(project, locale, canonical, image),
   };
 }
@@ -342,6 +359,7 @@ export function renderSeoHead(seo: SeoDescriptor, fontPreloads: string[] = []) {
     `<meta data-seo="route" name="twitter:title" content="${escapeHtml(seo.title)}" />`,
     `<meta data-seo="route" name="twitter:description" content="${escapeHtml(seo.description)}" />`,
     `<meta data-seo="route" name="twitter:image" content="${escapeHtml(seo.image)}" />`,
+    `<meta data-seo="route" name="twitter:image:alt" content="${escapeHtml(seo.imageAlt)}" />`,
     ...preloadTags,
     `<script data-seo="route" type="application/ld+json">${jsonLd}</script>`,
   ].join('\n    ');

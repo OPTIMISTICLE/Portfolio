@@ -2,14 +2,14 @@ import assert from 'node:assert/strict';
 import { readFile, stat } from 'node:fs/promises';
 import path from 'node:path';
 import { pathToFileURL } from 'node:url';
+import { verifyRoutes } from './verify-seo-routes.mjs';
 
 const root = process.cwd();
 const dist = path.join(root, 'dist');
 const serverEntry = await import(pathToFileURL(path.join(root, 'dist-ssr', 'entry-server.js')).href);
 const { indexableSeoRoutes, seoRoutes, siteIdentity } = serverEntry;
 
-assert.equal(seoRoutes.length, 28, 'Expected 28 localized output routes.');
-assert.equal(indexableSeoRoutes.length, 26, 'Expected 26 indexable routes.');
+await verifyRoutes(serverEntry, dist);
 
 for (const route of seoRoutes) {
   const outputPath = path.join(dist, `${route.path.replace(/^\//, '')}.html`);
@@ -40,7 +40,7 @@ for (const route of seoRoutes) {
 }
 
 const sitemap = await readFile(path.join(dist, 'sitemap.xml'), 'utf8');
-assert.equal((sitemap.match(/<url>/g) ?? []).length, 26, 'Sitemap URL count is incorrect.');
+assert.equal((sitemap.match(/<url>/g) ?? []).length, indexableSeoRoutes.length, 'Sitemap URL count is incorrect.');
 assert.ok(!sitemap.includes('workers.dev'), 'Sitemap still references the old Workers domain.');
 assert.ok(!sitemap.includes('/notes</loc>'), 'Empty Notes pages must not appear in the sitemap.');
 
